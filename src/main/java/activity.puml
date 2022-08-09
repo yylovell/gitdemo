@@ -1,0 +1,26 @@
+@startuml
+title Activity Diagram of User login
+
+start
+:user request login;
+if (is request param null？) then (N)
+  :query user info by username;
+  if (is user info  null ?) then (N)
+    :compare the password;
+    if (Is password right?) then (Y)
+      :generate a token ,and set it to redis;
+      :response with login success;
+    else(N)
+       :response with wrong password code;
+       stop
+    endif
+  else(Y)
+    :response with error userinfo;
+    stop
+  endif
+else(Y)
+  :response with error param;
+  stop
+  endif
+stop
+@enduml

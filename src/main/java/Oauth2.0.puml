@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Oauth2.0授权流程
+actor "微信用户" as user
+participant "第三方应用" as app
+participant "微信开放平台" as platform
+
+autonumber
+
+user -> app: 请求登录第三方应用
+app -> platform: 请求Oauth2.0授权登录
+platform --> user: 请求用户确认
+user -> platform: 用户确认
+platform --> app: 拉起第三方应用或者重定向第三方，带上授权临时票据（code）
+app -> platform: 通过code，加上APPID、APPSECRET，换取access_token
+platform --> app: 返回access_token
+@enduml

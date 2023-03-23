@@ -1,0 +1,106 @@
+@startuml
+'https://plantuml.com/class-diagram
+title "Java集合类图"
+
+
+interface Iterator{
+Iterator<T> iterator();
+}
+interface ListIterator{
+boolean hasNext();
+boolean hasPrevious();
+void add(E e);
+}
+
+interface Collection{
+int size();
+Iterator<E> iterator();
+boolean equals(Object o);
+int hashCode();
+}
+
+interface Map{
+boolean containsKey(Object key);
+Set<K> keySet();
+Set<Map.Entry<K, V>> entrySet();
+}
+note left of Map : Map 没有继承Collection
+interface List{
+Iterator<E> iterator();
+boolean add(E e);
+}
+interface Set{
+Iterator<E> iterator();
+boolean add(E e);
+}
+
+abstract class AbstractCollection
+abstract class AbstractMap
+
+abstract class AbstractList
+abstract class AbstractSet
+abstract class AbstractSequentialList
+
+Iterator <|-- Collection
+Iterator <|-- ListIterator
+Collection -- Map: 实现了Collection方法
+Collection <|-- List
+Collection <|-- Set
+ListIterator <|-- List
+
+Collection <|-- AbstractCollection
+AbstractCollection <|-- AbstractList
+AbstractCollection <|-- AbstractSet
+Map <|.. AbstractMap
+List <|.. AbstractList
+Set <|.. AbstractSet
+
+AbstractList <|-- ArrayList
+AbstractList <|-- AbstractSequentialList
+AbstractSequentialList <|-- LinkedList
+AbstractSet <|-- HashSet
+HashSet <|-- LinkedHashSet
+AbstractMap <|-- HashMap
+HashMap <|-- LinkedHashMap
+
+
+
+
+class ArrayList {
+Object[] elementData
+size()
+}
+class LinkedList {
+Node<E> first
+Node<E> last
+}
+
+class HashSet {
+HashMap<E,Object> map
+}
+
+class LinkedHashSet {
+HashMap<E,Object> map
+}
+
+class HashMap {
+Node<K,V>[] table
+Set<Map.Entry<K,V>> entrySet
+int size
+int modCount
+int threshold
+final float loadFactor
+}
+
+class LinkedHashMap {
+Node<K,V>[] table
+Set<Map.Entry<K,V>> entrySet
+int size
+int modCount
+int threshold
+final float loadFactor
+}
+
+
+
+@enduml

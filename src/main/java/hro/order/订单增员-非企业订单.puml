@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title 订单增员-非企业订单
+actor User as user
+
+participant "社保申请" as sih
+participant "办理方" as handle
+participant "订单" as order
+participant "客户合同白名单" as cw
+participant "客户合同" as cc
+participant "客户" as c
+participant "合同本方" as oii
+participant "供应商政策包" as vpp
+participant "操作人员user" as u
+participant "个人账号" as pa
+participant "应收财务月结表" as mc
+participant "财务月度表" as m
+
+autonumber
+user ->
+@enduml

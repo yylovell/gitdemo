@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title 申请办理社保
+actor User as user
+
+participant "办理方" as handle
+participant "订单" as order
+participant "客户合同白名单" as cw
+participant "社保申请" as sih
+participant "消息通知" as om
+participant "个人账号" as pa
+
+autonumber
+
+user -> handle: 判断办理方是否有效|检查办理方式|检查账号序号
+handle --> user: 无效返回错误
+handle -> order: 查询订单ID
+order -> cw: 查询客户合同白名单
+cw -> sih: 新增|修改社保申请信息
+sih -> om: 发送消息通知
+om -> pa: 更新个人账号信息：账号、序号
+pa --> user: 返回信息
+@enduml
